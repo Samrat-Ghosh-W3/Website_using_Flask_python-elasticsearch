@@ -1,74 +1,33 @@
-# MyApp Does Amazing Things!
+
 
 ## Installation
 
-```
-$ pip install -r requirements.txt
+Install requirements.txt using
 
-$ pip install setup.py
+  $ pip install -r requirements.txt 
+  
+  $python setup.py install
+  
 
-$python setup.py install
-```
+## Run Command
 
+$python app.py
+  
 
-
-## Development
-
-This project includes a number of helpers in the `Makefile` to streamline common development tasks.
-
-### Environment Setup
+## Environment Setup
 
 The following demonstrates setting up and working with a development environment:
 
-```
-### create a virtualenv for development
+Create and Activate virtual environment
 
-$ make virtualenv
+$ pip install virtualenv 
 
-$ source env/bin/activate
+$ virtualenv venv
 
+$ venv/Scripts/activate
 
-### run myapp cli application
+## Run in Browser
 
-$ myapp --help
+http://127.0.0.1:5000/rentbyowner/1
 
-
-### run pytest / coverage
-
-$ make test
-```
-
-
-### Releasing to PyPi
-
-Before releasing to PyPi, you must configure your login credentials:
-
-**~/.pypirc**:
-
-```
-[pypi]
-username = YOUR_USERNAME
-password = YOUR_PASSWORD
-```
-
-Then use the included helper function via the `Makefile`:
-
-```
-$ make dist
-
-$ make dist-upload
-```
-
-## Deployments
-
-### Docker
-
-Included is a basic `Dockerfile` for building and distributing `My Application`,
-and can be built with the included `make` helper:
-
-```
-$ make docker
-
-$ docker run -it myapp --help
-```
-# Cement-framework-with-Elasticsearch
+http://localhost:5000/rentbyowner/1
