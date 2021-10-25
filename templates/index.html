@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Rent by Owner</title>
+{% endblock %}
+
+{% block body %}
+
+<div id="indexbody" class="container-fluid">
+
+
+   <div class="bg-danger border mt-2 p-1 rounded-top ">
+      <h4 class="text-light p-2"><strong>Top Hotel in Orlando, Florida, USA</strong></h4>
+   </div>
+
+
+
+   <div class="border border-danger rounded mb-3">
+      <div class="row">
+
+         <div class="col-md-9">
+            <div class="card mb-3 pt-2 ps-3 border-0" style="max-width: 1200px;">
+               <div class="row">
+                  <div class="col-md-4 ">
+
+                     <div>
+                        <img src="{{ hotelDataById.hImage }}" class="img-fluid rounded-start w-100">
+                     </div>
+                     <div class="p-3">
+                        <div>
+                           
+                           <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                               <div class="carousel-indicators">
+                                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                                       aria-current="true" aria-label="Slide 1"></button>
+                                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                       aria-label="Slide 2"></button>
+                                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                       aria-label="Slide 3"></button>
+                               </div>
+                               <div class="carousel-inner" style="height: 75px;">
+                                   <div class="carousel-item active">
+                                       <image src="{{url_for('static',filename = 'image/1.jpg')}}" class="d-inline-block  w-100 "></image>
+                                       
+                                   </div>
+                                   <div class="carousel-item">
+                                       <image src="{{url_for('static',filename = 'image/2.jpg')}}" class="d-block w-100"></image>
+                                       
+                                   </div>
+                                   <div class="carousel-item">
+                                       <image src="{{url_for('static',filename = 'image/3.jpg')}}" class="d-block w-100"></image>
+                                       
+                                   </div>
+                               </div>
+                               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                                   data-bs-slide="prev">
+                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                   <span class="visually-hidden">Previous</span>
+                               </button>
+                               <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                                   data-bs-slide="next">
+                                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                   <span class="visually-hidden">Next</span>
+                               </button>
+                           </div>
+                       </div>
+                     </div>
+                  </div>
+   
+   
+   
+   
+                  <div class="col-md-8">
+                     <div class="card-body" style="padding-top: 0px;">
+   
+                        <p><b>{{hotelDataById.hType}}</b></p>
+   
+                        <h4 class="card-title"><b>{{hotelDataById.hName}}</b></h4>
+   
+                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>{{hotelDataById.hReview}} Reviews</small></p>
+   
+                        <p>
+                           <small>
+                              <i class="fas fa-user-friends"></i>&nbsp;&nbsp;<span>{{hotelDataById.hGuests}}
+                                 Guests</span>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <i class="fas fa-bed">&nbsp;&nbsp;</i><span>{{hotelDataById.hBedRooms}}
+                                 Bedrooms</span>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <i class="fas fa-moon">&nbsp;&nbsp;</i><span>1 Night Min.Stay</span>
+                           </small>
+                        </p>
+   
+                        <p>
+                           <small>
+                              {% for feature in hotelDataById.hFeatures %}
+                              <span>{{feature}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              {% endfor %}
+                           </small>
+                        </p>
+   
+                        <p id="descriptionText" class="card-text">
+                           <small>
+                              {{hotelDataById.hDescription | safe }}
+                           </small>
+                        </p>
+                        <button type="button" id="readDetails" class="btn btn-danger" onclick="description()">Read
+                           More</button>
+                     </div>
+                  </div>
+
+               </div>
+               
+
+            </div>
+         </div>
+
+
+         <div class="col-md-3 border border-secondary border-top-0 border-end-0 border-bottom-0 mt-3 mb-3">
+            <div class="row">
+               <p class=" mb-2">From</p>
+            </div>
+
+            <div class="row">
+               <h4><b>৳ <span>{{ hotelDataById.hCost }}</span>/night</b></h4>
+               <hr class="mt-3 ms-3 mx-auto" style="width: 350px;">
+            </div>
+
+
+            <div class="row border  ms-1" style="width: 350px;">
+               <p class="p-2 mb-0">
+                  <i class="fas fa-user-friends">&nbsp;&nbsp;&nbsp;</i>Guests
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i id="case-increase" class="fas fa-plus cursoR"></i>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span id="case-count">1</span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i id="case-decrease" class="fas fa-minus cursoR"></i>
+               </p>
+            </div>
+
+            <div class="row">
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-success ms-2 mt-4" style="width: 350px;">
+                     <b>CHECK AVAILABILITY</b>
+                  </button>
+               </a>
+            </div>
+
+            <div class="row">
+               <p class="mt-3 ms-4 ps-5 text-start">
+                  <small>You will be redirected to
+                     <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">Booking.com</a>
+                  </small>
+               </p>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+
+
+   <div>
+      <h5 class="text-danger pt-3"><b>Orlando (FL) has 49 Vacation Rentals and Resorts</b></h5>
+   </div>
+
+
+
+
+
+
+   <div class="row">
+      <div class="card-group p-3">
+
+         <div class="card p-3">
+            <img src="{{ allHotelImages.hotelImage1 }}" class="card-img-top img-fluid cardImg" />
+            <div class="card-body">
+               <h6 class="card-title">
+                  <small>
+                     <b>Florida’s Most Room to Explore</b>
+                  </small>
+               </h6>
+               <p>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>754 Reviews</small>
+               </p>
+               <p>
+                  <small>
+                     <span>Air Conditioner</span>&nbsp;&nbsp;&nbsp;
+                     <span>Laundry</span>&nbsp;&nbsp;&nbsp;
+                     <span>Parking</span>
+                  </small>
+               </p>
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-outline-info">View Details</button>
+               </a>
+               
+            </div>
+         </div>
+
+         <div class="card p-3">
+            <img src="{{ allHotelImages.hotelImage2 }}" class="card-img-top img-fluid cardImg" />
+            <div class="card-body">
+               <h6 class="card-title">
+                  <small>
+                     <b>Florida’s Universal's Hard Rock Hotel®</b>
+                  </small>
+               </h6>
+               <p>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>658 Reviews</small>
+               </p>
+               <p>
+                  <small>
+                     <span>Laundry</span>&nbsp;&nbsp;&nbsp;
+                     <span>Internet</span>
+                  </small>
+               </p>
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-outline-info">View Details</button>
+               </a>
+              
+            </div>
+         </div>
+
+         <div class="card p-3">
+            <img src="{{ allHotelImages.hotelImage3 }}" class="card-img-top img-fluid cardImg" />
+            <div class="card-body">
+               <h6 class="card-title">
+                  <small>
+                     <b>Universal's Loews Sapphire Falls Resort</b>
+                  </small>
+               </h6>
+               <p>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>963 Reviews</small>
+               </p>
+               <p>
+                  <small>
+                     <span>Air Conditioner</span>&nbsp;&nbsp;&nbsp;
+                     <span>Parking</span>&nbsp;&nbsp;&nbsp;
+                     <span>Laundry</span>
+                  </small>
+               </p>
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-outline-info">View Details</button>
+               </a>
+            </div>
+         </div>
+
+         <div class="card p-3">
+            <img src="{{ allHotelImages.hotelImage4 }}" class="card-img-top img-fluid cardImg" />
+            <div class="card-body">
+               <h6 class="card-title">
+                  <small>
+                     <b>Book a home with flexibility.</b>
+                  </small>
+               </h6>
+               <p>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>894 Reviews</small>
+               </p>
+               <p>
+                  <small>
+                     <span>Air Conditioner</span>&nbsp;&nbsp;&nbsp;
+                     <span>Internet</span>
+                  </small>
+               </p>
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-outline-info">View Details</button>
+               </a>
+               
+            </div>
+         </div>
+
+         <div class="card p-3">
+            <img src="{{ allHotelImages.hotelImage5 }}" class="card-img-top img-fluid cardImg" />
+            <div class="card-body">
+               <h6 class="card-title">
+                  <small>
+                     <b>Universal's Cabana Bay Beach Resort</b>
+                  </small>
+               </h6>
+               <p>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;<small>951 Reviews</small>
+               </p>
+               <p>
+                  <small>
+                     <span>Breakfast</span>&nbsp;&nbsp;&nbsp;
+                     <span>Parking</span>&nbsp;&nbsp;&nbsp;
+                     <span>Internet</span>
+                  </small>
+               </p>
+               <a href="https://www.booking.com/" target="_blank" style="text-decoration: none;">
+                  <button type="button" class="btn btn-outline-info">View Details</button>
+               </a>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+
+</div>
+{% endblock %}

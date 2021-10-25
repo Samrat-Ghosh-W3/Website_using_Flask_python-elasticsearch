@@ -1,0 +1,29 @@
+body {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  #homeBody {
+    min-height: 795px;
+  }
+  #indexbody {
+    min-height: 795px;
+  }
+  
+  #more {
+    display: none;
+  }
+  
+  .cardImg {
+    width: 340px;
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  #descriptionText {
+    width: 740px;
+    text-align: justify;
+  }
+  
+  .cursoR {
+    cursor: pointer;
+  }
