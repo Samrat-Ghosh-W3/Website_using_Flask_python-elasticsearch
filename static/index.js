@@ -20,7 +20,6 @@ function description(){
     
 }
 
-//increment decrement function
 document.getElementById('case-increase').addEventListener('click', function(){
 
     const caseInput = document.getElementById('case-count').textContent;
